@@ -32,6 +32,7 @@ exports.list = async () => {
 
 exports.create = async (req) => {
     try {
+        console.log("req.body", req.body);
         const User = mongoose.model('User');
         const newUser = new User({
             email: req.body.email,
@@ -48,7 +49,7 @@ exports.create = async (req) => {
 exports.updateOne = async (userId, body) => {
     try {
         const User = mongoose.model('User');
-        const user =  await User.findOneAndUpdate({_id: userId}, 
+        const user =  await User.findOneAndUpdate({ username: username }, 
             { 
                 email: body.email,
                 username: body.username

@@ -13,22 +13,23 @@ router.route('/').get(isAuthenticated, async (req, res, next) => {
     }
 });
 
-router.route('/:username').get(isAuthenticated, async (req, res, next) => {
+router.route('/').post(async (req, res, next) => {
+    console.log("post", req.body);
     try {
-        console.log(req.params);
-        const response = await userController.get(req.params['username']);
+        const response = await userController.create(req);
         res.json(response);
-    } catch(err) {
+    } catch (err) {
         console.error(err);
         next(err);
     }
 });
 
-router.route('/create').post(async (req, res, next) => {
+router.route('/:userId').get(isAuthenticated, async (req, res, next) => {
     try {
-        const response = await userController.create(req);
+        console.log(req.params);
+        const response = await userController.get(req.params['userId']);
         res.json(response);
-    } catch (err) {
+    } catch(err) {
         console.error(err);
         next(err);
     }
