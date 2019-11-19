@@ -11,6 +11,10 @@ const routes = require('./routes');
 
 // Models
 require('./models/user');
+require('./models/bike');
+require('./models/comment');
+require('./models/post');
+require('./models/response');
 
 //Connect to DB;
 mongoose.connect(process.env.DB_URI, {useNewUrlParser: true, useUnifiedTopology: true });
