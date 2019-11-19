@@ -1,5 +1,5 @@
 {
-    "name": "shopping-buddy-api",
+    "name": "bike_md_api",
     "main": "server.js",
     "dependencies": {
         "@google/maps": "^1.0.1",

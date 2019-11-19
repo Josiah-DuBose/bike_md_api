@@ -5,7 +5,7 @@ const _ = require('lodash');
 const path  = require('path');
 const expressValidator = require('express-validator');
 const mongoose = require('mongoose');
-const port = process.env.PORT || 8550;
+const port = process.env.PORT || 8560;
 const app = express();
 const routes = require('./routes');
 
@@ -13,7 +13,7 @@ const routes = require('./routes');
 require('./models/user');
 
 //Connect to DB;
-mongoose.connect(process.env.DB_URI, {useNewUrlParser: true});
+mongoose.connect(process.env.DB_URI, {useNewUrlParser: true, useUnifiedTopology: true });
 
 // Parsers
 app.use(bodyParser.urlencoded({ extended: false }));

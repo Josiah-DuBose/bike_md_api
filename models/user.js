@@ -30,9 +30,15 @@ const schema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    lists: [
-        { type: Schema.Types.ObjectId, ref: 'List' }
+    posts: [
+        { type: Schema.Types.ObjectId, ref: 'Post' }
     ],
+    comments: [
+        { type: Schema.Types.ObjectId, ref: 'Comment' }
+    ],
+    rating: {
+        type: Number
+    },
     avatar: {
         type: String
     },
@@ -48,7 +54,7 @@ schema.methods.setPassword = function(password) {
 };
 
 schema.methods.validPassword = function(password) {
-    if (!password) { return false }
+    if (!password) { return false; }
     const hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex');
     return this.hash === hash;
 };
@@ -71,7 +77,7 @@ schema.methods.userJSON = function(token){
         username: this.username,
         email: this.email,
         id: this._id,
-    }
+    };
     if (token) {
         user.token = schema.methods.generateJWT();
     }
