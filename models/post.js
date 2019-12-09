@@ -9,6 +9,11 @@ const schema = new mongoose.Schema({
     text: String,
     system: String,
     date: Date,
+    bike: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Bike'
+    },
+    mileage: Number,
     comments: [
         {
             type: mongoose.Schema.Types.ObjectId,

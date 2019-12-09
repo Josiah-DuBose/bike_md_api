@@ -20,19 +20,8 @@ exports.get = async (username) => {
     }
 }
 
-exports.list = async () => {
-    try {
-        const User = mongoose.model('User');
-        const users = await User.find({}, {hash: 0, salt: 0, __v: 0});
-        return users.map(user => user.userJSON());
-    } catch(err) {
-        throw(utils.createError(500, 'Users retrieve error', err));
-    }
-}
-
 exports.create = async (req) => {
     try {
-        console.log("req.body", req.body);
         const User = mongoose.model('User');
         const newUser = new User({
             email: req.body.email,
@@ -49,11 +38,7 @@ exports.create = async (req) => {
 exports.updateOne = async (userId, body) => {
     try {
         const User = mongoose.model('User');
-        const user =  await User.findOneAndUpdate({ username: username }, 
-            { 
-                email: body.email,
-                username: body.username
-            },
+        const user =  await User.findOneAndUpdate({ username: userId }, body,
             {
                 new: true,
                 useFindAndModify: false

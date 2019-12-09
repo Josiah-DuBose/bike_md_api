@@ -3,16 +3,6 @@ const router = express.Router();
 const userController = require('../controllers/user');
 const isAuthenticated = require('../middlewares/auth').isAuthenticated;
 
-router.route('/').get(isAuthenticated, async (req, res, next) => {
-    try {
-        const response = await userController.list(req);
-        res.json(response);
-    } catch(err) {
-        console.error(err);
-        next(err);
-    }
-});
-
 router.route('/').post(async (req, res, next) => {
     console.log("post", req.body);
     try {

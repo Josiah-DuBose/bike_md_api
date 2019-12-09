@@ -13,6 +13,7 @@ const schema = new mongoose.Schema({
     },
     username: {
         type: String,
+        unique: true,
         required: [true, 'Must specify a username.'],
     },
     active: {
@@ -76,6 +77,9 @@ schema.methods.userJSON = function(token){
         username: this.username,
         email: this.email,
         id: this._id,
+        rating: this.rating,
+        posts: this.posts,
+        comments: this.comments
     };
     if (token) {
         user.token = schema.methods.generateJWT();
