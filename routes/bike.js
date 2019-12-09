@@ -16,7 +16,7 @@ router.route('/').get(isAuthenticated, async (req, res, next) => {
 
 router.route('/:id').get(isAuthenticated, async (req, res, next) => {
     try {
-        const response = await bikeController.get(_.get(req, 'id'));
+        const response = await bikeController.readOne(_.get(req, 'id'));
         res.json(response);
     } catch(err) {
         console.error(err);

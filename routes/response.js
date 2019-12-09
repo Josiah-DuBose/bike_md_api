@@ -33,7 +33,7 @@ router.route('/:id').get(isAuthenticated, async (req, res, next) => {
         if (!_.get(req, 'params.id')) {
             throw(utils.createError(400, "No Response id provided", 'Please try again with a valid post ID.'));
         }
-        const response = await responseController.get(_.get(req, 'params.id'));
+        const response = await responseController.readOne(_.get(req, 'params.id'));
         res.json(response);
     } catch(err) {
         console.error(err);

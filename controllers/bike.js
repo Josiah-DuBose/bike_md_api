@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const utils = require('../helpers/util');
+const Utils = require('../helpers/util');
 const _ = require('lodash');
 
 exports.list = async () => {
@@ -7,16 +7,16 @@ exports.list = async () => {
         const Bike = mongoose.model('Bike');
         return await Bike.find({}, {__v: 0});
     } catch(err) {
-        throw(utils.createError(500, 'Bikes retrieve error', err));
+        throw(Utils.createError(500, 'Bikes retrieve error', err));
     }
 }
 
-exports.get = async (id) => {
+exports.readOne = async (id) => {
     try {
         const Bike = mongoose.model('Bike');
-        return await Bike.find({_id: id}, {__v: 0});
+        return await Bike.findOne({_id: id}, {__v: 0});
     } catch(err) {
-        throw(utils.createError(500, `Bike retrieve error for ${id}`, err));
+        throw(Utils.createError(500, `Bike retrieve error for ${id}`, err));
     }
 }
 

@@ -11,7 +11,7 @@ exports.list = async () => {
     }
 }
 
-exports.get = async (id) => {
+exports.readOne = async (id) => {
     try {
         const Response = mongoose.model('Response');
         return await Response.findOne({_id: id}).populate('user').populate('comments');

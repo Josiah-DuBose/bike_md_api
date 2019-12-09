@@ -36,6 +36,9 @@ const schema = new mongoose.Schema({
     comments: [
         { type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }
     ],
+    responses: [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'Response' }
+    ],
     rating: {
         type: Number
     },
@@ -87,6 +90,6 @@ schema.methods.userJSON = function(token){
     return user;
 };
 
-schema.plugin(uniqueValidator, {message: 'Email is already taken.'});
+schema.plugin(uniqueValidator);
 
 mongoose.model('User', schema);

@@ -3,7 +3,7 @@ const utils = require('../helpers/util');
 const _ = require('lodash');
 const jwt = require('jsonwebtoken');
 
-exports.get = async (username) => {
+exports.readOne = async (username) => {
     try {
         const User = mongoose.model('User');
         const user = await User.findOne(

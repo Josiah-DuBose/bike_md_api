@@ -17,7 +17,7 @@ router.route('/').post(async (req, res, next) => {
 router.route('/:userId').get(isAuthenticated, async (req, res, next) => {
     try {
         console.log(req.params);
-        const response = await userController.get(req.params['userId']);
+        const response = await userController.readOne(req.params['userId']);
         res.json(response);
     } catch(err) {
         console.error(err);
